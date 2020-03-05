@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/publishLast';
-import { SelectionActions } from '../../store/selection.actions';
-import { LoggingService } from '../../LoggingService';
 import { HttpClient } from '@angular/common/http';
+import { SelectionActions } from 'app/store/selection.actions';
+import { LoggingService } from 'app/LoggingService';
 
 @Injectable()
 export class ListService {

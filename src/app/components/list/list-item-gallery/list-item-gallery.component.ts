@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PropertyService } from '../property.service';
 import { LayoutActions } from 'app/store/layout.actions';
+import { PropertyService } from 'app/services/property.service';
 
 @Component({
   selector: 'app-list-item-gallery',

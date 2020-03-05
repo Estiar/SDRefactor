@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ListService } from '../list.service';
 import { Subscription } from 'rxjs/Subscription';
 import { isNotNullOrUndefined } from 'app/shared/_shared';
+import { ListService } from 'app/services/list.service';
 
 @Component({
   selector: 'app-list-item-details',

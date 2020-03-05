@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListService } from '../../list.service';
 import { AppState } from '../../../../store/AppState.interface';
 import { NgRedux } from '@angular-redux/store';
 import { SelectionActions } from '../../../../store/selection.actions';
@@ -10,6 +9,7 @@ import { isNotNullOrUndefined } from 'app/shared/_shared';
 import { LayoutActions } from 'app/store/layout.actions';
 import { filter } from 'rxjs/operators';
 import { PropertyService } from 'app/services/property.service';
+import { ListService } from 'app/services/list.service';
 
 @Component({
   selector: 'app-list-item-details-vendor-details',

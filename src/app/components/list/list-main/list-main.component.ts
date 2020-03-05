@@ -6,7 +6,6 @@ import {
   HostListener,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ListService } from '../list.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ResultsActions } from '../../../store/results.actions';
 import { NgRedux } from '@angular-redux/store';
@@ -26,6 +25,7 @@ import { animationShow } from './configs/animations';
 
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { PropertyService } from 'app/services/property.service';
+import { ListService } from 'app/services/list.service';
 export interface INgxGalleryImage {
   small?: string | SafeResourceUrl;
   medium?: string | SafeResourceUrl;

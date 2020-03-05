@@ -13,13 +13,11 @@ import {
 
 import { ListItemsComponent } from './components/list/list-items/list-items.component';
 import { ListItemDetailsComponent } from './components/list/list-item-details/list-item-details.component';
-import { ListService } from './components/list/list.service';
 import { MapItemsComponent } from './components/list/list-map/map-items.component';
 import { DevToolsExtension, NgReduxModule } from '@angular-redux/store';
 import { SelectionActions } from './store/selection.actions';
 import { ListMainComponent } from './components/list/list-main/list-main.component';
 import { ResultsActions } from './store/results.actions';
-import { PropertyService } from './components/list/property.service';
 import { ListItemGalleryComponent } from './components/list/list-item-gallery/list-item-gallery.component';
 import { ListFilterBedroomComponent } from './components/list/filters/bedroom/bedroom.component';
 import { ListFilterPriceComponent } from './components/list/filters/price/price.component';
@@ -64,6 +62,8 @@ import { VendorDetailsRegionalComponent } from './components/list/list-item-deta
 import { ListMainExpandMapSwitchComponent } from './components/list/list-main/list-main-expand-map-switch/list-main-expand-map-switch.component';
 import { ImageBigViewComponent } from './components/list/image-big-view/image-big-view.component';
 import { ImageArrowComponent } from './components/list/image-big-view/image-arrow/image-arrow.component';
+import { ListService } from './services/list.service';
+import { PropertyService } from './services/property.service';
 
 @NgModule({
   declarations: [

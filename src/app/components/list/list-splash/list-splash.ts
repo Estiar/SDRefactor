@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {ListService} from '../list.service';
+import { ListService } from 'app/services/list.service';
 
 @Component({
   selector: 'app-tip-free-service',

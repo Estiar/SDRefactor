@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/publishLast';
-import {LoggingService} from '../../LoggingService';
 import {HttpClient} from '@angular/common/http';
+import { LoggingService } from 'app/LoggingService';
 
 @Injectable()
 export class PropertyService {
