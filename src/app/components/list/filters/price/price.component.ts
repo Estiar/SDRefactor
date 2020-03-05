@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { ResultsActions } from '../../../store/results.actions';
+import { ResultsActions } from '../../../../store/results.actions';
 
 @Component({
   selector: 'app-list-filter-price',

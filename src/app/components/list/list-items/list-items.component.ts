@@ -7,14 +7,15 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SelectionActions } from '../../store/selection.actions';
+import { SelectionActions } from '../../../store/selection.actions';
 import { NgRedux } from '@angular-redux/store';
-import { IResultsFilter, ResultsActions } from '../../store/results.actions';
+import { IResultsFilter, ResultsActions } from '../../../store/results.actions';
 import { Subscription } from 'rxjs/Subscription';
-import { AppState } from '../../store/AppState.interface';
+import { AppState } from '../../../store/AppState.interface';
 import { ListService } from '../list.service';
 import { isNotNullOrUndefined } from 'app/shared/_shared';
 import { LayoutActions } from 'app/store/layout.actions';
+// tslint:disable-next-line:import-blacklist
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 

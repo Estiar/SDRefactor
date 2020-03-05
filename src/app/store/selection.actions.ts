@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {NgRedux} from '@angular-redux/store';
-import {SelectionItem} from '../list/selection-item.model';
 import {AppState} from './AppState.interface';
 import {ResultsActions} from './results.actions';
+import { SelectionItem } from 'app/models/selection-item.model';
 
 @Injectable()
 export class SelectionActions {

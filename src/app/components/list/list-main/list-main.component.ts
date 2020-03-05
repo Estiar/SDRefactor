@@ -8,13 +8,12 @@ import {
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListService } from '../list.service';
 import { Subscription } from 'rxjs/Subscription';
-import { ResultsActions } from '../../store/results.actions';
+import { ResultsActions } from '../../../store/results.actions';
 import { NgRedux } from '@angular-redux/store';
-import { AppState } from '../../store/AppState.interface';
+import { AppState } from '../../../store/AppState.interface';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-import { PropertyService } from '../property.service';
 import { Title } from '@angular/platform-browser';
 
 import { filter } from 'rxjs/operators';
@@ -26,6 +25,7 @@ import { MapItemsComponent } from '../list-map/map-items.component';
 import { animationShow } from './configs/animations';
 
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { PropertyService } from 'app/services/property.service';
 export interface INgxGalleryImage {
   small?: string | SafeResourceUrl;
   medium?: string | SafeResourceUrl;

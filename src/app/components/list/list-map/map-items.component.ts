@@ -8,15 +8,15 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { AgmMap, GoogleMapsAPIWrapper } from '@agm/core';
-import { SelectionItem } from '../selection-item.model';
 import { NgRedux } from '@angular-redux/store';
-import { SelectionActions } from '../../store/selection.actions';
+import { SelectionActions } from '../../../store/selection.actions';
 
 import { Subscription } from 'rxjs/Subscription';
 import { filter } from 'rxjs/operators';
-import { AppState } from '../../store/AppState.interface';
+import { AppState } from '../../../store/AppState.interface';
 import { isUndefined } from 'util';
 import { LayoutActions } from 'app/store/layout.actions';
+import { SelectionItem } from 'app/models/selection-item.model';
 
 declare let google;
 

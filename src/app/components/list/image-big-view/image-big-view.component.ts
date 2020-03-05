@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from 'app/store/AppState.interface';
+// tslint:disable-next-line:import-blacklist
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

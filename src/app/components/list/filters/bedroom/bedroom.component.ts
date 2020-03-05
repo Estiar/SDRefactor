@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ResultsActions} from '../../../store/results.actions';
+import {ResultsActions} from '../../../../store/results.actions';
 
 @Component({
   selector: 'app-list-filter-bedroom',

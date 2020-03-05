@@ -1,34 +1,37 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PropertyService } from '../../property.service';
 import { ListService } from '../../list.service';
-import { AppState } from '../../../store/AppState.interface';
+import { AppState } from '../../../../store/AppState.interface';
 import { NgRedux } from '@angular-redux/store';
-import { SelectionActions } from '../../../store/selection.actions';
+import { SelectionActions } from '../../../../store/selection.actions';
 import { Subscription } from 'rxjs/Subscription';
 import { isNullOrUndefined } from 'util';
-import { isNotNullOrUndefined } from 'app/shared/_shared';
+import { LoggingService } from '../../../../LoggingService';
+import { isNotNullOrUndefined, PropertyModel } from 'app/shared/_shared';
+import { GalleryEvent } from './models/interfaces';
 import { LayoutActions } from 'app/store/layout.actions';
 import { filter } from 'rxjs/operators';
+import { PropertyService } from 'app/services/property.service';
 
 @Component({
-  selector: 'app-list-item-details-vendor-details',
-  templateUrl: './vendor-details.component.html',
-  styleUrls: ['./vendor-details.component.scss'],
+  selector: 'app-list-item-details-locator-details',
+  templateUrl: './locator-details.component.html',
+  styleUrls: ['./locator-details.component.scss'],
 })
-export class VendorDetailsComponent implements OnInit, OnDestroy {
+export class LocatorDetailsComponent implements OnInit, OnDestroy {
   static readonly MAX_NOTES_LENGTH = 130;
 
   subscriptions: Array<Subscription> = [];
 
   propertyID;
-  propertyData;
+  propertyData: PropertyModel = null;
+  agentInfo;
 
-  isMgmtExpanded;
   isNotesExpanded;
+  isSchoolsVisible;
   isGalleryVisible;
+  displayFloorplans = [];
   showAllAmenities;
-  specialClassification: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,8 +41,19 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
     private listService: ListService,
     private store: NgRedux<AppState>,
     private selectionService: SelectionActions,
+    private loggingService: LoggingService,
     private layoutActions: LayoutActions
   ) {}
+
+  get phone() {
+    return this.propertyData && this.propertyData.phone
+      ? `tel:${this.propertyData.phone
+          .replace('(', '')
+          .replace('-', '')
+          .replace(')', '')
+          .trim()}`
+      : '';
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
@@ -62,6 +76,8 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
     // todo: move this to a route resolver
     if (!this.listService || !this.listService.IsReady) {
       this.loadList();
+    } else {
+      this.agentInfo = this.listService.AgentInfo;
     }
 
     // todo: move to route resolver.
@@ -80,44 +96,31 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private getSpecialClassification(): string {
-    if (this.propertyData.section8) return 'Section 8';
-    if (this.propertyData.studentHousing) return 'Student Housing';
-    if (this.propertyData.seniroHousing) return 'Senior Housing';
-
-    return '';
-  }
-
   private loadProperty() {
     this.subscriptions.push(
       this.propertyService.subscription
         .pipe(isNotNullOrUndefined())
         .subscribe((data: any) => {
           if (data.error) {
-            this.router.navigate(['/access-denied']).then();
+            this.router.navigate(['/access-denied']);
             return;
           }
 
           this.propertyData = data;
-          this.specialClassification = this.getSpecialClassification();
+          this.displayFloorplans = this.propertyData.floorplans; // todo: apply filter here.
           this.propertyData.displayNotes = this.propertyData.notes;
           if (
             this.propertyData.displayNotes.length >
-            VendorDetailsComponent.MAX_NOTES_LENGTH
+            LocatorDetailsComponent.MAX_NOTES_LENGTH
           )
             this.propertyData.displayNotes =
               this.propertyData.notes.substring(
                 0,
-                VendorDetailsComponent.MAX_NOTES_LENGTH
+                LocatorDetailsComponent.MAX_NOTES_LENGTH
               ) + '...';
 
           if (this.propertyData.highValueAmenities.length === 0)
             this.showAllAmenities = true;
-
-          if (this.propertyData.propertyID === 0) {
-            this.propertyData.management += ' Offices';
-            this.expandMgmt();
-          }
         })
     );
   }
@@ -131,6 +134,7 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
             item => !isNullOrUndefined(item) && !isNullOrUndefined(item.index)
           )
         )
+
         .subscribe(item => (this.isGalleryVisible = item.index >= 0))
     );
   }
@@ -141,6 +145,7 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
         .pipe(isNotNullOrUndefined())
         .subscribe(() => {
           this.selectionService.select(this.propertyID);
+          this.agentInfo = this.listService.AgentInfo;
         })
     );
   }
@@ -154,30 +159,41 @@ export class VendorDetailsComponent implements OnInit, OnDestroy {
     this.isNotesExpanded = true;
   }
 
-  expandMgmt() {
-    this.isMgmtExpanded = true;
-  }
-
-  showGallery(visible, url) {
-    if (!visible) {
+  showGallery(data: GalleryEvent) {
+    if (!data.visible) {
       this.layoutActions.hideGallery();
       return;
     }
 
-    if (url) url = url.replace('/micros/', '/standard/');
-    else url = this.propertyData.photos[0];
+    if (data.url) data.url = data.url.replace('/micros/', '/standard/');
+    else data.url = this.propertyData.photos[0];
 
-    this.layoutActions.displayPhoto(url, this.propertyData.photos);
-
-    this.initAlbum();
+    this.layoutActions.displayPhoto(data.url, this.propertyData.photos);
   }
 
-  initAlbum() {
-    const inputElement = this.renderer.selectRootElement(
-      'i.fa.fa-times-circle'
+  toggleFloorplanPhoto(floorplan) {
+    if (this.displayFloorplans.length === 1) {
+      this.displayFloorplans = [].concat(this.propertyData.floorplans);
+    } else if (floorplan.photoUrl !== '') {
+      this.displayFloorplans = [].concat(floorplan);
+    }
+  }
+
+  toggleFav(state: boolean) {
+    this.propertyData.favorite = state;
+    this.subscriptions.push(
+      this.listService
+        .toggleFavorite(this.propertyID, this.propertyData.favorite)
+        .subscribe(
+          () => {},
+          error => {
+            this.loggingService.logException(
+              'ListItemDetailsComponent.toggleFav()',
+              '',
+              error
+            );
+          }
+        )
     );
-    this.renderer.listen(inputElement, 'click', () => {
-      this.layoutActions.hideGallery();
-    });
   }
 }

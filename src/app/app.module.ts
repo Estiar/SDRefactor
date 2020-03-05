@@ -11,58 +11,59 @@ import {
   MatSlideToggleModule,
 } from '@angular/material';
 
-import { ListItemsComponent } from './list/list-items/list-items.component';
-import { ListItemDetailsComponent } from './list/list-item-details/list-item-details.component';
-import { ListService } from './list/list.service';
-import { MapItemsComponent } from './list/list-map/map-items.component';
+import { ListItemsComponent } from './components/list/list-items/list-items.component';
+import { ListItemDetailsComponent } from './components/list/list-item-details/list-item-details.component';
+import { ListService } from './components/list/list.service';
+import { MapItemsComponent } from './components/list/list-map/map-items.component';
 import { DevToolsExtension, NgReduxModule } from '@angular-redux/store';
 import { SelectionActions } from './store/selection.actions';
-import { ListMainComponent } from './list/list-main/list-main.component';
+import { ListMainComponent } from './components/list/list-main/list-main.component';
 import { ResultsActions } from './store/results.actions';
-import { PropertyService } from './list/property.service';
-import { ListItemGalleryComponent } from './list/list-item-gallery/list-item-gallery.component';
-import { ListFilterBedroomComponent } from './list/filters/bedroom/bedroom.component';
-import { ListFilterPriceComponent } from './list/filters/price/price.component';
-import { TipFreeServiceComponent } from './list/list-splash/list-splash';
+import { PropertyService } from './components/list/property.service';
+import { ListItemGalleryComponent } from './components/list/list-item-gallery/list-item-gallery.component';
+import { ListFilterBedroomComponent } from './components/list/filters/bedroom/bedroom.component';
+import { ListFilterPriceComponent } from './components/list/filters/price/price.component';
+import { TipFreeServiceComponent } from './components/list/list-splash/list-splash';
 import { GlobalErrorHandler } from './GlobalErrorHandler';
 import { LoggingService } from './LoggingService';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
-import { FavoriteComponent } from './list/filters/favorite/favorite.component';
+import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
+import { FavoriteComponent } from './components/list/filters/favorite/favorite.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FooterComponent } from './footer/footer.component';
-import { CardComponent } from './list/list-items/locator-item/locator-item.component';
-import { VendorItemComponent } from './list/list-items/vendor-item/vendor-item.component';
-import { LocatorDetailsComponent } from './list/list-item-details/locator-details/locator-details.component';
-import { VendorDetailsComponent } from './list/list-item-details/vendor-details/vendor-details.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CardComponent } from './components/list/list-items/locator-item/locator-item.component';
+import { VendorItemComponent } from './components/list/list-items/vendor-item/vendor-item.component';
+import { LocatorDetailsComponent } from './components/list/list-item-details/locator-details/locator-details.component';
+import { VendorDetailsComponent } from './components/list/list-item-details/vendor-details/vendor-details.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsLinksComponent } from './list/list-item-details/locator-details/locator-details-links/locator-details-links.component';
+import { LocatorDetailsLinksComponent } from './components/list/list-item-details/locator-details/locator-details-links/locator-details-links.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsSubheadingComponent } from './list/list-item-details/locator-details/locator-details-subheading/locator-details-subheading.component';
+import { LocatorDetailsSubheadingComponent } from './components/list/list-item-details/locator-details/locator-details-subheading/locator-details-subheading.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsPhotosComponent } from './list/list-item-details/locator-details/locator-details-photos/locator-details-photos.component';
+import { LocatorDetailsPhotosComponent } from './components/list/list-item-details/locator-details/locator-details-photos/locator-details-photos.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsFaviconComponent } from './list/list-item-details/locator-details/locator-details-favicon/locator-details-favicon.component';
+import { LocatorDetailsFaviconComponent } from './components/list/list-item-details/locator-details/locator-details-favicon/locator-details-favicon.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsNotesComponent } from './list/list-item-details/locator-details/locator-details-notes/locator-details-notes.component';
+import { LocatorDetailsNotesComponent } from './components/list/list-item-details/locator-details/locator-details-notes/locator-details-notes.component';
 import { AgmConfiguredModule } from './shared/_shared';
 import { AppRoutingModule } from './app-routing.module';
-import { ListMainMapSwitchComponent } from './list/list-main/list-main-map-switch/list-main-map-switch.component';
+import { ListMainMapSwitchComponent } from './components/list/list-main/list-main-map-switch/list-main-map-switch.component';
 import { LayoutActions } from './store/layout.actions';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsSpecialsComponent } from './list/list-item-details/locator-details/locator-details-specials/locator-details-specials.component';
+import { LocatorDetailsSpecialsComponent } from './components/list/list-item-details/locator-details/locator-details-specials/locator-details-specials.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsFloorplansComponent } from './list/list-item-details/locator-details/locator-details-floorplans/locator-details-floorplans.component';
+import { LocatorDetailsFloorplansComponent } from './components/list/list-item-details/locator-details/locator-details-floorplans/locator-details-floorplans.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsExtraInfoComponent } from './list/list-item-details/locator-details/locator-details-extra-info/locator-details-extra-info.component';
+import { LocatorDetailsExtraInfoComponent } from './components/list/list-item-details/locator-details/locator-details-extra-info/locator-details-extra-info.component';
 // tslint:disable-next-line: max-line-length
-import { LocatorDetailsAmenitiesComponent } from './list/list-item-details/locator-details/locator-details-amenities/locator-details-amenities.component';
+import { LocatorDetailsAmenitiesComponent } from './components/list/list-item-details/locator-details/locator-details-amenities/locator-details-amenities.component';
 // tslint:disable-next-line: max-line-length
-import { VendorDetailsManagerComponent } from './list/list-item-details/vendor-details/vendor-details-manager/vendor-details-manager.component';
+import { VendorDetailsManagerComponent } from './components/list/list-item-details/vendor-details/vendor-details-manager/vendor-details-manager.component';
 // tslint:disable-next-line: max-line-length
-import { VendorDetailsRegionalComponent } from './list/list-item-details/vendor-details/vendor-details-regional/vendor-details-regional.component';
-import { ListMainExpandMapSwitchComponent } from './list/list-main/list-main-expand-map-switch/list-main-expand-map-switch.component';
-import { ImageBigViewComponent } from './list/image-big-view/image-big-view.component';
-import { ImageArrowComponent } from './list/image-big-view/image-arrow/image-arrow.component';
+import { VendorDetailsRegionalComponent } from './components/list/list-item-details/vendor-details/vendor-details-regional/vendor-details-regional.component';
+// tslint:disable-next-line:max-line-length
+import { ListMainExpandMapSwitchComponent } from './components/list/list-main/list-main-expand-map-switch/list-main-expand-map-switch.component';
+import { ImageBigViewComponent } from './components/list/image-big-view/image-big-view.component';
+import { ImageArrowComponent } from './components/list/image-big-view/image-arrow/image-arrow.component';
 
 @NgModule({
   declarations: [

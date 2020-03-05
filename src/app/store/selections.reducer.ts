@@ -1,6 +1,6 @@
 import {ISelectionsState, ISelectionsAction, SelectionActions} from './selection.actions';
-import {SelectionItem} from '../list/selection-item.model';
 import {InitialAppState} from './AppState.InitialState';
+import { SelectionItem } from 'app/models/selection-item.model';
 
 export function selectionsReducer(lastState: ISelectionsState = InitialAppState.selectionsState,
                                   action: ISelectionsAction): ISelectionsState {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListMainComponent } from './list/list-main/list-main.component';
-import { ListItemsComponent } from './list/list-items/list-items.component';
-import { ListItemDetailsComponent } from './list/list-item-details/list-item-details.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { ListMainComponent } from './components/list/list-main/list-main.component';
+import { ListItemsComponent } from './components/list/list-items/list-items.component';
+import { ListItemDetailsComponent } from './components/list/list-item-details/list-item-details.component';
+import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
 
 const appRoutes: Routes = [
   {
